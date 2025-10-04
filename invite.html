@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ashu ❤️ Aditi — Wedding Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #0f172a;
+      --bg2: #1f2a44;
+      --accent: #ffcc66;
+      --glass: rgba(255,255,255,0.06);
+      --soft: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+    body{
+      background: radial-gradient(1000px 600px at 10% 20%, rgba(255,200,120,0.06), transparent),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow:hidden;
+    }
+
+    /* Center card */
+    .stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px}
+    .card{
+      width:min(880px,96%);
+      border-radius:18px;
+      padding:40px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      box-shadow: 0 10px 40px rgba(3,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      backdrop-filter: blur(6px) saturate(120%);
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* Decorative top-left flourish */
+    .flourish{position:absolute;left:-40px;top:-40px;opacity:0.14;transform:rotate(-10deg);width:420px}
+
+    h1{font-family:'Playfair Display', serif;font-weight:900;letter-spacing:1px;margin:0;color:var(--accent);font-size:48px;text-align:center}
+    .couple{font-size:58px;margin:8px 0 6px;line-height:0.9;color:#fff;text-align:center}
+    .hearts{font-size:22px;display:block;opacity:0.95}
+
+    .meta{display:flex;gap:18px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+    .meta .item{background:var(--soft);padding:12px 18px;border-radius:12px;font-size:15px;color:#f3f4f6}
+
+    .venue{margin-top:26px;text-align:center;font-size:16px;color:#e6e6e6;opacity:0.95}
+
+    .action-row{display:flex;gap:12px;justify-content:center;margin-top:26px}
+    .btn{background:linear-gradient(90deg,var(--accent),#ffd98a);color:#0b1220;padding:12px 18px;border-radius:999px;border:none;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(255,200,120,0.16)}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
+
+    /* Small note */
+    .note{text-align:center;margin-top:18px;color:#cbd5e1;font-size:13px}
+
+    /* Name reveal animation */
+    .reveal-wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:6px}
+    .name-box{position:relative;padding:8px 20px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(4px)}
+    .name{font-family:'Playfair Display',serif;font-size:44px;margin:0;color:#fff;letter-spacing:0.6px}
+    .shimmer{position:absolute;inset:0;border-radius:12px;mix-blend-mode:overlay;opacity:0}
+    .name-animate{animation:namePop 1.1s ease forwards}
+    @keyframes namePop{0%{transform:translateY(10px) scale(0.98);opacity:0}60%{transform:translateY(-6px) scale(1.02);opacity:1}100%{transform:translateY(0) scale(1)}}
+
+    /* petals */
+    .petal{position:absolute;width:18px;height:18px;border-radius:50%;background:linear-gradient(180deg,#ffd7c2,#ff7e9a);filter:blur(0.2px);opacity:0.95}
+
+    /* confetti canvas fills entire background */
+    canvas.confetti{position:fixed;inset:0;pointer-events:none}
+
+    /* footer credit */
+    .credit{position:absolute;right:18px;bottom:18px;font-size:12px;color:#9aa3b2}
+
+    /* responsive tweaks */
+    @media (max-width:520px){
+      h1{font-size:20px}
+      .couple{font-size:36px}
+      .name{font-size:34px}
+      .card{padding:22px;border-radius:14px}
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="card" role="main" aria-label="Wedding invitation for Ashu and Aditi">
+
+      <!-- decorative SVG flourish -->
+      <svg class="flourish" viewBox="0 0 600 200" preserveAspectRatio="xMinYMin meet" aria-hidden="true">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0" stop-color="#ffecd2" stop-opacity="0.9"/>
+            <stop offset="1" stop-color="#fcb69f" stop-opacity="0.6"/>
+          </linearGradient>
+        </defs>
+        <path d="M10 140 Q160 10 300 120 T590 110" fill="none" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" />
+      </svg>
+
+      <div style="text-align:center">
+        <div style="opacity:0.92;color:#e6e6e6;font-size:15px">You are cordially invited to celebrate the union of</div>
+        <div class="reveal-wrap">
+          <div class="name-box">
+            <p class="couple name-animate" id="coupleName">Ashu ❤️ Aditi</p>
+          </div>
+        </div>
+
+        <div class="meta" aria-hidden="true">
+          <div class="item">📅 24th November 2025</div>
+          <div class="item">⏰ 8:00 PM onwards</div>
+          <div class="item">📍 Hotel West View, Model Town</div>
+        </div>
+
+        <div class="venue">GT Road, Ghaziabad — 201001</div>
+
+        <div class="action-row">
+          <button class="btn" id="openInvite">Open Invitation</button>
+          <button class="btn secondary" id="rsvpBtn">RSVP</button>
+        </div>
+
+        <div class="note">Dress: Formal | Kindly join us to bless the couple</div>
+      </div>
+
+      <div class="credit">Made with ❤️ — Invitation</div>
+
+      <!-- floating petals (will be duplicated by JS) -->
+
+    </div>
+  </div>
+
+  <canvas class="confetti" id="confetti"></canvas>
+
+  <audio id="bgm" preload="auto" loop>
+    <!-- Optional: user can drop in a music file or uncomment and set src to an online mp3 -->
+    <!-- <source src="music.mp3" type="audio/mpeg"> -->
+  </audio>
+
+  <script>
+    // Small interactive & animation script
+    const card = document.querySelector('.card');
+    const confetti = document.getElementById('confetti');
+    const ctx = confetti.getContext && confetti.getContext('2d');
+    let W, H, confettiPieces=[];
+
+    function resize(){
+      W = confetti.width = window.innerWidth;
+      H = confetti.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Confetti generator
+    function rand(min,max){ return Math.random()*(max-min)+min }
+    function makeConfetti(n=70){ confettiPieces=[]; const cols = ['#ffd98a','#ffb4c5','#ffd7c2','#ff7e9a','#fff59a'];
+      for(let i=0;i<n;i++){ confettiPieces.push({x:rand(0,W),y:rand(-H,0),r:rand(6,12),vx:rand(-0.7,0.7),vy:rand(1.2,3),rot:rand(0,360),vr:rand(-6,6),col:cols[Math.floor(Math.random()*cols.length)],t:rand(0,1)}) }
+    }
+    function updateConfetti(){ if(!ctx) return; ctx.clearRect(0,0,W,H); for(let p of confettiPieces){ p.x += p.vx; p.y += p.vy; p.rot += p.vr; if(p.y>H+20){ p.x = rand(0,W); p.y = -20; p.vy = rand(1.2,3) } ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180); ctx.fillStyle = p.col; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*0.6); ctx.restore(); } requestAnimationFrame(updateConfetti); }
+
+    // Petals creation
+    function spawnPetals(count=10){ const frag = document.createDocumentFragment(); for(let i=0;i<count;i++){ const el = document.createElement('div'); el.className='petal'; document.body.appendChild(el); const startX = rand(40, window.innerWidth-40); const delay = rand(0,3); el.style.left = startX+'px'; el.style.top = '-40px'; el.style.width = (rand(10,20))+'px'; el.style.height = (rand(10,20))+'px'; el.style.opacity = rand(0.6,1); el.animate([
+            { transform: `translateY(-10px) rotate(0deg)`, opacity: el.style.opacity },
+            { transform: `translateY(${window.innerHeight + 60}px) rotate(${rand(180,720)}deg)`, opacity: 0.6 }
+          ], { duration: rand(6000,12000), delay: delay*1000, easing: 'cubic-bezier(.2,.7,.2,1)' });
+          // remove after animation
+          setTimeout(()=> el.remove(), Math.floor(rand(6000,12000)));
+      }
+    }
+
+    // Reveal sequence
+    window.addEventListener('load', ()=>{
+      // name pop already has animation via CSS class
+      // start confetti and petals after small delay
+      makeConfetti(80);
+      updateConfetti();
+      setTimeout(()=> spawnPetals(22), 400);
+    });
+
+    // Buttons
+    document.getElementById('openInvite').addEventListener('click', ()=>{
+      // small zoom animation
+      card.animate([{ transform: 'scale(1)' },{ transform: 'scale(1.02)' },{ transform: 'scale(1)'}], { duration: 600, easing: 'ease-out' });
+      // brief confetti burst
+      makeConfetti(140);
+      setTimeout(()=> makeConfetti(80), 1600);
+      spawnPetals(30);
+    });
+
+    document.getElementById('rsvpBtn').addEventListener('click', ()=>{
+      const mailto = 'mailto:?subject=' + encodeURIComponent('RSVP: Wedding of Ashu & Aditi (24 Nov 2025)') + '&body=' + encodeURIComponent('Hello,\n\nI would like to confirm my attendance for the wedding of Ashu and Aditi on 24th November 2025 at Hotel West View, Ghaziabad.\n\nThanks,\n[Your name]');
+      window.location.href = mailto;
+    });
+
+    // Accessibility: keyboard open
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') document.getElementById('openInvite').click(); });
+
+    // small touch: when user double clicks card trigger confetti
+    card.addEventListener('dblclick', ()=>{ makeConfetti(160); spawnPetals(40); });
+
+  </script>
+</body>
+</html>
