@@ -212,41 +212,22 @@
     }
     const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzzJOcCRh59mPrMmhNBjovdc2c7_TTU-j3vBN2mseF40kJ5LpUggCBRtdom6KupKO73FQ/exec';
     function submitRSVP() {
-    const name = document.getElementById("rsvpName").value.trim();
-    const email = document.getElementById("rsvpEmail").value.trim();
-    const attendance = document.getElementById("rsvpAttend").value;
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const attendance = document.getElementById("attendance").value;
 
-    const statusEl = document.getElementById("rsvpStatus");
+    const url = `https://script.google.com/macros/s/AKfycbxyQfZK1D5uWRhMIgflTtBsq4M_HbmbSDPEmAJoGfC752JbxHEhRjOG_9RqwAHEws9W/exec?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&attendance=${encodeURIComponent(attendance)}`;
 
-    if (!name || !email) {
-        statusEl.textContent = "Please enter name and email.";
-        statusEl.style.color = "#b22222";
-        return;
-    }
-
-    statusEl.textContent = "Submitting...";
-    statusEl.style.color = "#228b22";
-
-    const url = `${WEB_APP_URL}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&attendance=${encodeURIComponent(attendance)}`;
-
-    fetch(url)
+    fetch(url)  // GET request, no CORS preflight
         .then(res => res.text())
-        .then(result => {
-        if (result.includes("Success")) {
-            statusEl.textContent = "RSVP submitted! Thank you.";
-            statusEl.style.color = "#228b22";
-        } else {
-            statusEl.textContent = "Unexpected response: " + result;
-            statusEl.style.color = "#b22222";
-        }
+        .then(data => {
+        alert("RSVP submitted successfully!");
         })
         .catch(err => {
         console.error(err);
-        statusEl.textContent = "Error submitting RSVP.";
-        statusEl.style.color = "#b22222";
+        alert("Error submitting RSVP.");
         });
     }
-
     // Accessibility: keyboard open
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') document.getElementById('openInvite').click(); });
     card.addEventListener('dblclick', ()=>{ makeConfetti(160); spawnPetals(40); });
