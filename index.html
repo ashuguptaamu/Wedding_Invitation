@@ -210,41 +210,41 @@
     function closeRSVP() {
       document.getElementById('rsvpModal').style.display = 'none';
     }
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxyQfZK1D5uWRhMIgflTtBsq4M_HbmbSDPEmAJoGfC752JbxHEhRjOG_9RqwAHEws9W/exec';
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzzJOcCRh59mPrMmhNBjovdc2c7_TTU-j3vBN2mseF40kJ5LpUggCBRtdom6KupKO73FQ/exec';
     function submitRSVP() {
-      const name = document.getElementById('rsvpName').value.trim();
-      const email = document.getElementById('rsvpEmail').value.trim();
-      const attendance = document.getElementById('rsvpAttend').value;
-      const statusEl = document.getElementById('rsvpStatus');
-      if (!name || !email) {
-        statusEl.textContent = 'Please enter name and email.';
-        statusEl.style.color = '#b22222';
+    const name = document.getElementById("rsvpName").value.trim();
+    const email = document.getElementById("rsvpEmail").value.trim();
+    const attendance = document.getElementById("rsvpAttend").value;
+
+    const statusEl = document.getElementById("rsvpStatus");
+
+    if (!name || !email) {
+        statusEl.textContent = "Please enter name and email.";
+        statusEl.style.color = "#b22222";
         return;
-      }
-      statusEl.textContent = 'Submitting...';
-      statusEl.style.color = '#228b22';
-      fetch(WEB_APP_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&attendance=${encodeURIComponent(attendance)}`
-        })
-      .then(response => response.text())
-      .then(result => {
-        if(result && result.indexOf("Success") > -1){
-          statusEl.textContent = 'RSVP submitted! Thank you.';
-          statusEl.style.color = '#228b22';
-        } else if(result && result.indexOf("Error:") === 0) {
-          statusEl.textContent = result;
-          statusEl.style.color = '#b22222';
+    }
+
+    statusEl.textContent = "Submitting...";
+    statusEl.style.color = "#228b22";
+
+    const url = `${WEB_APP_URL}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&attendance=${encodeURIComponent(attendance)}`;
+
+    fetch(url)
+        .then(res => res.text())
+        .then(result => {
+        if (result.includes("Success")) {
+            statusEl.textContent = "RSVP submitted! Thank you.";
+            statusEl.style.color = "#228b22";
         } else {
-          statusEl.textContent = 'Unexpected response: ' + result;
-          statusEl.style.color = '#b22222';
+            statusEl.textContent = "Unexpected response: " + result;
+            statusEl.style.color = "#b22222";
         }
-      })
-      .catch(err => {
-        statusEl.textContent = 'Error submitting RSVP.';
-        statusEl.style.color = '#b22222';
-      });
+        })
+        .catch(err => {
+        console.error(err);
+        statusEl.textContent = "Error submitting RSVP.";
+        statusEl.style.color = "#b22222";
+        });
     }
 
     // Accessibility: keyboard open
