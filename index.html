@@ -157,7 +157,7 @@
 
   <!-- GIF Modal -->
   <div id="gifModal">
-    <img src="https://drive.google.com/uc?export=view&id=1844rIZGpbogcH5J1_MN2tiKshfyZtL40" alt="Wedding Invitation GIF">
+    <img src="AshuWedsAditi.gif" alt="Wedding Invitation GIF">
   </div>
 
   <script>
@@ -225,9 +225,9 @@
       statusEl.style.color = '#228b22';
       fetch(WEB_APP_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({name, email, attendance})
-      })
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&attendance=${encodeURIComponent(attendance)}`
+        })
       .then(response => response.text())
       .then(result => {
         if(result && result.indexOf("Success") > -1){
